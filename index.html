@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Joe's Hotdogs</title>
+        <style>
+            div {
+                font-size: large;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to Joe's Hotdogs!</h1>
+        <h2>Your Order</h2>
+
+        <!-- section for output -->
+        <div id="hotdogs"></div>
+        <div id="fries"></div>
+        <div id="sodas"></div>
+        <div id="discount"></div>
+        <div id="subtotal"></div>
+        <div id="tax"></div>
+        <div id="total"></div>
+
+        <script language="javascript">
+            // set up all constant variables
+            priceDrink = 1.5;
+            priceHotdogs = 3.25;
+            priceFries = 2.0;
+            minimal = 20;
+
+            // read in inputs from the user
+            numberHotdogs = prompt("How many hotdogs do you want?");
+            numberFries = prompt("How many fries do you want?");
+            numberDrinks = prompt("How many drinks/sodas do yo want?");
+            
+            // calculate cost for each category
+            HotdogsCost = (priceHotdogs * numberHotdogs);
+            FriesCost =  (priceFries * numberFries);
+            DrinksCost = (priceDrink * numberDrinks);
+            subtotal =  HotdogsCost + FriesCost + DrinksCost;
+
+            // check whether the user qualifies for the discount
+            if (subtotal >= minimal)
+            {
+                subtotal -= (subtotal * 0.1)
+            }
+
+            // calculate tax and total
+            tax = subtotal * 0.0625
+            total = subtotal + tax
+
+            // construct all output strings
+            hotdogsString = "#Hotdogs: " + numberHotdogs + " at $" + priceHotdogs + " is $" + HotdogsCost.toFixed(2)
+            friesString = "#Fries: " + numberFries + " at $" + priceFries + " is $" + FriesCost.toFixed(2)
+            sodasString = "#Sodas: " + numberDrinks + " at $" + priceDrink + " is $" + DrinksCost.toFixed(2)
+            discountString = "You qualified for our 10% discount."
+            subtotalString = "Subtotal: $" + subtotal.toFixed(2)
+            taxString = "Meals Tax: $" + tax.toFixed(2)
+            totalString = "Total: $" + total.toFixed(2)
+
+
+            // write output
+            document.getElementById("hotdogs").innerText = hotdogsString
+            document.getElementById("fries").innerText = friesString
+            document.getElementById("sodas").innerText = sodasString
+
+            // let the user know that they received discount if applicable
+            if (subtotal >= minimal)
+                document.getElementById("discount").innerText = discountString
+            
+            // write the remaining part of output
+            document.getElementById("subtotal").innerText = subtotalString
+            document.getElementById("tax").innerText = taxString
+            document.getElementById("total").innerText = totalString
+        </script>
+    </body>
+</html>
